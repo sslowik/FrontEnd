@@ -1,16 +1,10 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-
-<body>
-
-  <p>Before the script...</p>
-
-  <script>
-    alert( 'Hello, world!' );
-  </script>
-
-  <p>...After the script.</p>
-
-</body>
-
+  <head>
+    <title>My webpage!</title>
+  </head>
+  <body>
+    <h1>Hello, World!</h1>
+    <h4 id='date'></h4>
+  </body>
 </html>

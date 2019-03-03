@@ -1,51 +1,55 @@
-var bazaPacjentów = [
-
+var patientDatabase = [
 {
-    imię: "Jan",
-    nazwisko: "Kowalski",
-    wiek: 33, 
-    płeć: "M",
-    jestWCiąży: false,
-    czyAwanturującySię: false, 
-    lekarzPK: "Jakub Sienkiewicz",
-    chorobyPrzewlekłe: ["astma", "nadciśnienie", "cukrzyca", "schizofrenia"]
+    firstName: "Jan",
+    lastName: "Kowalski",
+    birthdate: new Date (1977, 06, 15), 
+    sex: "M",
+    isPregnant: false,
+    isBrawler: false, 
+    familyDoctor: "Jakub Sienkiewicz",
+    chronicDiseases: ["astma", "nadciśnienie", "cukrzyca", "schizofrenia"]
 },
 
 {
-    imię: "Ewa",
-    nazwisko: "Wiśniewska",
-    wiek: 44, 
-    płeć: "K",
-    jestWCiąży: true,
-    czyAwanturującySię: false, 
-    lekarzPK: "Jakub Sienkiewicz",
-    chorobyPrzewlekłe: ["nadciśnienie"],
+    firstName: "Ewa",
+    lastName: "Wiśniewska",
+    birthdate: new Date (year: 1977 , 
+    sex: "K",
+    isPregnant: true,
+    isBrawler: false, 
+    familyDoctor: "Jakub Sienkiewicz",
+    chronicDiseases: ["nadciśnienie"],
 },
 
 {
-    imię: "Magdalena",
-    nazwisko: "Bauer",
-    wiek: 12, 
-    płeć: "K",
-    jestWCiąży: false,
-    czyAwanturującySię: false, 
-    lekarzPK: "Doktor Zosia",
-    chorobyPrzewlekłe: ["brak"],
+    firstName: "Magdalena",
+    lastName: "Wiśniewska",
+    birthdate: new Date (year: 1977 , 
+    sex: "K",
+    isPregnant: false,
+    isBrawler: false, 
+    familyDoctor: "Jakub Sienkiewicz",
+    chronicDiseases: ["brak"],
 }
 ];
 
-function addPacjentIfNotExists(pacjent){
-bazaPacjentów.indexOf(pacjent) === -1 ? bazaPacjentów.push(pacjent) : console.log("This item already exists");
+console.log(patientDatabase);
+
+function addPacjentIfNotExists(patient){
+    // 
+if patientDatabase.indexOf(patient) === -1 ? patientDatabase.push(patient) : console.log("This item already exists");
 }
 
-function czyJestWciąży(pacjent){
-return bazaPacjentów.pacjent.jestWCiąży; 
-console.log("Uwaga! " + bazaPacjentów.pacjent.imię + " " + bazaPacjentów.pacjent.imię )
+function czyJestWciąży(patient){
+return patientDatabase.patient.isPregnant; 
+console.log("Uwaga! " + patientDatabase.patient.firstName + " " + patientDatabase.patient.firstName )
 }
 
 function getPacjentsByLastname(lastName){    
-    console
-    return output = bazaPacjentów.filter(bazaPacjentw.nazwisko === lastName);
+    console.log("Pacjenci o nazwisku " + lastName);
+    return output = patientDatabase.filter(patientDatabase.lastName === lastName);
 }
+
+console.log(patientDatabase); 
 
 getPacjentsByLastname("Kowalski");

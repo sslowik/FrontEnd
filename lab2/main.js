@@ -119,6 +119,8 @@ function getPregnantPatients() {
 //console.log("Uwaga! " + patientDatabase.patient.firstName + " " + patientDatabase.patient.firstName )
 //}
 
+console.log(getPregnantPatients()); 
+
 function getPacjentsByLastname(lastN) {    
     console.log("Pacjenci o nazwisku " + lastN);
     return patients.filter(function(patient) {
@@ -135,3 +137,34 @@ function getPatientsOfFamilyDoctor(familyDoc) {
 }
 
 console.log(getPatientsOfFamilyDoctor("Jakub Sienkiewicz"));
+
+var getAgeFromBirthdate = function(dateString) {
+    var myDate = new Date(dateString), 
+        now = new Date(),
+        month_of_birth=myDate.getMonth(),
+        day_of_birht=myDate.getDay(),
+        year_of_birth=myDate.getYear(),
+        now_month = now.getMonth(),
+        now_day = now.getDay(),
+        now_year = now.getYear(),
+        age = now_year - year_of_birth;
+    if (now_month < month_of_birth) {
+        age--;
+    } else if ((now_month == month_of_birth) && (now_day < day_of_birht)) {
+        age--;
+        if (age < 0) {
+            age = 0;
+        }
+    }
+    return age;
+}
+
+function getAgeOfPatient(id) {
+    var patientWithId = patients.filter(function(patient) {
+        return patient.id === id; 
+    });
+    console.log("Wiek pacjenta o id " + id + " to: " + getAgeFromBirthdate(patientWithId[0].birthdate) + " lat."); 
+}
+
+getAgeOfPatient(1);
+getAgeOfPatient(2);

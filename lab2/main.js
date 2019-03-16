@@ -1,8 +1,10 @@
-var patientDatabase = [
+var patients = [
 {
+    id: 1, 
     firstName: "Jan",
     lastName: "Kowalski",
-    birthdate: new Date (1977, 06, 15), 
+    yearOfBirth: 1977,
+    birthdate: new Date (yearOfBirth, 06, 15), 
     sex: "M",
     isPregnant: false,
     isBrawler: false, 
@@ -11,9 +13,11 @@ var patientDatabase = [
 },
 
 {
+    id: 2, 
     firstName: "Ewa",
     lastName: "Wiśniewska",
-    birthdate: new Date (year: 1977 , 
+    yearOfBirth: 1983, 
+    birthdate: new Date (yearOfBirth, 06, 03),    
     sex: "K",
     isPregnant: true,
     isBrawler: false, 
@@ -22,9 +26,11 @@ var patientDatabase = [
 },
 
 {
+    id: 3, 
     firstName: "Magdalena",
     lastName: "Wiśniewska",
-    birthdate: new Date (year: 1977 , 
+    yearOfBirth: 1990,
+    birthdate: new Date (yearOfBirth + "/1/1"), 
     sex: "K",
     isPregnant: false,
     isBrawler: false, 
@@ -33,17 +39,52 @@ var patientDatabase = [
 }
 ];
 
-console.log(patientDatabase);
+console.log(patiients);
 
-function addPacjentIfNotExists(patient){
-    // 
-if patientDatabase.indexOf(patient) === -1 ? patientDatabase.push(patient) : console.log("This item already exists");
+function addPatient(firstN, lastN, birthYear, birthMonth, birthDay, sexOf, pregnancy, chronicDis = []) {
+    var newPatient = {
+      id: patients.length,
+      firstName: firstN,
+      lastName: lastN,
+      yearOfBirth: birthYear, 
+      birthdate: new Date(birthYear, birthMonth, birthDay),
+      sex: sexOf, 
+      isPregnant: pregnancy,
+      isBrawler: false,  
+      chronicDiseases: chronicDis,
+      };
+    patients.push(newPatient);
+    console.log("Successfully added patient: " + newPatient.firstName + " " + newPatient.lastName);
+  }
+
+addPatient("Bolesław", "Krzywousty", 1085, 12, 26, "M", false,["Krzywe usta", "Nie żyje"]); 
+
+function getPatientNameById(id) {
+    var patientWithId = patients.filter(function(patient) {
+        return patient.id === id; 
+    });
+    return ( patientWithId[0].firstName + " " + patientWithId[0].lastName ); 
 }
 
-function czyJestWciąży(patient){
-return patientDatabase.patient.isPregnant; 
-console.log("Uwaga! " + patientDatabase.patient.firstName + " " + patientDatabase.patient.firstName )
+console.log(getPatientNameById(4)); 
+
+function getPatientsWithDisease(disease) {
+    return patients.filter(function(patient) {
+return 
+    });
 }
+
+function getBrawlers(){
+    return patients.filter(function(patient) {
+        return patient.isBrawler === true;
+    });
+}
+
+getBrawlers(); 
+
+//return patientDatabase.patient.isPregnant; 
+//console.log("Uwaga! " + patientDatabase.patient.firstName + " " + patientDatabase.patient.firstName )
+//}
 
 function getPacjentsByLastname(lastName){    
     console.log("Pacjenci o nazwisku " + lastName);

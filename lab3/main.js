@@ -166,5 +166,12 @@ function getAgeOfPatient(id) {
     console.log("Wiek pacjenta o id " + id + " to: " + getAgeFromBirthdate(patientWithId[0].birthdate) + " lat."); 
 }
 
+function addChronicDisease(id) {
+    var patientToAddCD = patients.filter(function(patient) {
+        
+
+    });
+}
+
 getAgeOfPatient(1);
 getAgeOfPatient(2);

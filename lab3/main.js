@@ -41,6 +41,10 @@ var patients = [
 
 console.log(patients);
 
+//enum for chronic diseases
+var EChronicDiseases = {"astma":1, "cukrzyca":2, "nadciśnienie":3};
+Object.freeze(EChronicDiseases);
+
 function addPatient(firstN, lastN, birthYear, birthMonth, birthDay, sexOf, pregnancy, brawling, chronicDis = []) {
     var newPatient = {
       id: patients.length + 1,
@@ -54,10 +58,10 @@ function addPatient(firstN, lastN, birthYear, birthMonth, birthDay, sexOf, pregn
       chronicDiseases: chronicDis,
       };
     patients.push(newPatient);
-    console.log("Successfully added patient: " + newPatient.firstName + " " + newPatient.lastName);
+    console.log("Successfully added patient: " + newPatient.firstName + " " + newPatient.lastName + " with ID: " + newPatient.id);
   }
 
-addPatient("Bolesław", "Krzywousty", 1085, 12, 26, "M", false, true, ["Krzywe usta", "Nie żyje"]); 
+addPatient("Bolesław", "Krzywousty", 1085, 12, 26, "M", false, true, ["Krzywe usta", "Nie żyje", EChronicDiseases.astma]); 
 
 function getPatientNameById(id) {
     var patientWithId = patients.filter(function(patient) {
@@ -168,3 +172,31 @@ function getAgeOfPatient(id) {
 
 getAgeOfPatient(1);
 getAgeOfPatient(2);
+
+function filterByID(patient, id) {
+    return patient.id === id;
+}
+
+function addChronicDisease(id, disease) {
+    var patientToAddCd = patients.filter(function(patient) {
+        return patient.id === id; 
+    })
+    patientToAddCd[0].chronicDiseases.push(disease);
+    console.log("Succesfully added chronic disease: " + disease + ".");
+}
+
+addChronicDisease(1, "piegi");
+console.log(patients);
+
+
+//WIP
+var addingPatient = function(patient) {
+    var idExists = false; 
+    patients.forEach(function(dbPatient) {
+        if(dbPatient.id == patient.id)
+        idExists = true; 
+    })
+};
+
+const uuidv1 = require('uuid/v1');
+console.log("UUID przykładowe: " + uuidv1());

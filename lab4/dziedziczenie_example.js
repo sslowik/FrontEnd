@@ -25,6 +25,7 @@ Shape.prototype.move = function (deltaX, deltaY) {
     thisY += deltaY;
 }
 
+// konstruktor bazowy  - trzeba go wywołać? 
 // ========================================
 function Circle (x,y,r) {
     Shape.call(this,x,y); // wywołanie
@@ -34,12 +35,30 @@ function Circle (x,y,r) {
 Circle.prototype = Object.create(Shape.prototype); 
 Circle.prototype.constructor = Circle; 
 
+// Rozszerzanie
 
-// początek innego przykładu
+Circle.prototype.area = function() {
+    return Math.PI * this.r * this.r;
+}
+
+// Tworzymy obiekt
+var aCircle = new Circle(20,30,2);
+console.log(aCircle.area());
+
+
+// początek innego przykładu -  z dziedziczeniem? 
 var lib = {}
 
 lib.module = (function(){
     var c = 0; 
     var priv2 = "Hello";
-    return 
-})
+    return {
+        message: priv2 + "World",
+        counter: function () {
+            return ++c;
+        },
+        sayHello: function(name) {
+        return "Hello " + name;
+        }
+    };
+})();

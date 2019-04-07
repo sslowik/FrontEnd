@@ -202,3 +202,5 @@ deps/v8/third_party/eu-strip/
 
 .DS_Store
 
+#ignore example text files
+*example*.txt

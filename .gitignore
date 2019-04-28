@@ -65,7 +65,6 @@ typings/
 #from https://github.com/nodejs/node/blob/master/.gitignore
 
 # Whitelist dotfiles
-.*
 !deps/**/.*
 !test/fixtures/**/.*
 !tools/node_modules/**/.*
@@ -150,7 +149,7 @@ deps/icu
 deps/icu*.zip
 deps/icu*.tgz
 deps/icu-tmp
-./node_modules
+node_modules
 android-toolchain/
 .svn/
 
@@ -202,5 +201,7 @@ deps/v8/third_party/eu-strip/
 
 .DS_Store
 
+# MY IGNORANCE :)
 #ignore example text files
 *example*.txt
+lib/

@@ -4,7 +4,7 @@ import axios from 'axios';
 class Num extends Component {
     
     state = {
-        number: '',
+        number: "",
         numbers: []
     };
 
@@ -13,7 +13,7 @@ class Num extends Component {
     }
     
     renderNumbers() {
-        return this.state.numbers.map( (n) => n).join(', ') 
+        return this.state.numbers.map( n => n ).join(','); 
     }
 
     async fetchNumbers() {
@@ -25,24 +25,39 @@ class Num extends Component {
 
     handleSubmit = async (event) => {
         event.preventDefault();
-        await axios.post("http://localhost:4000/api/numbers", {number: this.state.number} );
+        await axios.post("http://localhost:4000/api/numbers", { number: this.state.number } );
+        await this.fetchNumbers();
+    }
+
+    handleDelete = async (event) => {
+        event.preventDefault();
+        await axios.post("http://localhost:4000/api/numbers/all", { number: this.state.number } );
         await this.fetchNumbers();
     }
 
     render() {
         return (
             <div>
-
                 <div>
                     <form onSubmit={this.handleSubmit}>
                         <label>Enter number:</label>
-                        <input 
-                        value={this.state.number}
+                        <input value={this.state.number}
                         onChange={ event => this.setState( { number: event.target.value } ) }
                     />
                     <button>Submit</button>
                 </form>
             </div>
+            <div>Current numbers:</div>
+            <div>{this.renderNumbers()}</div>
+            <div>===================</div>
+            <form onSubmit={this.handleDelete}>
+                        <label>Enter number to delete:</label>
+                        <input value={this.state.number}
+                        onChange={ event => this.setState( { number: event.target.value } ) }
+                    />
+            <button>Delete</button>
+            </form>
+            <div>Current numbers:</div>
             <div>{this.renderNumbers()}</div>
             </div>
         )

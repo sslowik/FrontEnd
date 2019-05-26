@@ -1,49 +1,40 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
+const Patient = require('./Patient');
+const PatientDatabase = require('./PatientDatabase');
+
 const app = express();
 const port = 4000;
-const numbers = [];
 
-// parse requests of content-type - application/json
-app.use(bodyParser.json());
-// define a simple route
-app.get('/', (req, res) => {
-    res.json({"message": "Welcome to application 'Pacjenci' :) "});
+app.use(bodyParser.json()); 
+app.use(bodyParser.urlencoded({ extended: true })); 
+
+const patients = new PatientDatabase();
+
+app.get('/api/patients/all', (req, res) => {
+    res.send(patients.allRecords());
 });
 
-// listen for requests
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
-
-app.get('/api/', (req, res) => res.send('Hi there! API operational.'));
-
-app.get('/api/numbers/all', (req, res) => {
-    res.send(numbers);
+app.get('/api/patients/:pesel', (req, res) => {
+    const pesel = req.params.pesel;
+    res.send(patients.findPatientByPesel(pesel));
 });
 
-app.post('/api/numbers', (req, res) => {
-    const number = req.body.number;
-    numbers.push(number);
-    res.send({"message": `number ${number} added to database. \n Current array elements: ${numbers}.`});
+app.delete('/api/patients/:pesel', (req, res) => {
+    const pesel = req.params.pesel;
+    patients.deletPatient(pesel);
+    res.send(`Deleted record of patient with PESEL: ${pesel}`);
 });
 
-app.delete('/api/numbers/all', (req, res) => {
-    const number = req.body.number;
-    
-    var i = numbers.indexOf(number);
-    if (i > -1) {
-        numbers.splice(i, 1)
-    }
-    res.send({"message": `number ${number} deleted. \n Current array elements: ${numbers}.`});
+app.post('/api/patients', (req, res) => {
+    const firstnamename = req.body.firstname;
+    const lastname = req.body.lastname;
+    const sex = req.body.sex;
+    const pesel = req.body.pesel;
+    const familyDoctor = req.body.familyDoctor;
+    patients.addPatient(new Patient(firstname, lastname, sex , pesel, familyDoctor));
+    res.send(new Patient(firstname, lastname, sex , pesel, familyDoctor));
 });
 
-app.put('/api/numbers/all', (req, res) => {
-    const number = req.body.number;
-    const replacement = req.body.replace;
-    
-    var i = numbers.indexOf(number);
-    if (i > -1) {
-        numbers[i] = replacement
-    }
-    res.send({"message": `Number ${number} with index ${i} replaced with ${replacement}.\n Current array elements: ${numbers}.`});
-});
+app.listen(port, () => console.log(`Listening on port ${port}`));

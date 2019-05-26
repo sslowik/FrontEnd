@@ -4,7 +4,8 @@ import axios from 'axios';
 class Num extends Component {
     
     state = {
-        number: "",
+        numberToAdd: "",
+        numberToDelete: "",
         numbers: []
     };
 
@@ -25,14 +26,13 @@ class Num extends Component {
 
     handleSubmit = async (event) => {
         event.preventDefault();
-        await axios.post("http://localhost:4000/api/numbers", { number: this.state.number } );
+        await axios.post("http://localhost:4000/api/numbers", { number: this.state.numberToAdd } );
         await this.fetchNumbers();
     }
 
     handleDelete = async (event) => {
         event.preventDefault();
-        await axios.post("http://localhost:4000/api/numbers/all", { number: this.state.number } );
-        await this.fetchNumbers();
+        await axios.delete("http://localhost:4000/api/numbers/all", { number: this.state.numberToDelete } );
     }
 
     render() {
@@ -41,8 +41,8 @@ class Num extends Component {
                 <div>
                     <form onSubmit={this.handleSubmit}>
                         <label>Enter number:</label>
-                        <input value={this.state.number}
-                        onChange={ event => this.setState( { number: event.target.value } ) }
+                        <input value={this.state.numberToAdd}
+                        onChange={ event => this.setState( { numberToAdd: event.target.value } ) }
                     />
                     <button>Submit</button>
                 </form>
@@ -52,8 +52,8 @@ class Num extends Component {
             <div>===================</div>
             <form onSubmit={this.handleDelete}>
                         <label>Enter number to delete:</label>
-                        <input value={this.state.number}
-                        onChange={ event => this.setState( { number: event.target.value } ) }
+                        <input value={this.state.numberToDelete}
+                        onChange={ event => this.setState( { numberToDelete: event.target.value } ) }
                     />
             <button>Delete</button>
             </form>

@@ -49,8 +49,7 @@ render () {
     }
 }
 
-
-
+export default Parent;
 
 
 

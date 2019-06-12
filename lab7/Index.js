@@ -9,7 +9,7 @@ class Clock extends Component {
         this.nazwa = props.name;
         this.state = {
             date: new Date(),
-            zone: 'GMT'
+            zone: 'GMT + 1'
         }
     }
 

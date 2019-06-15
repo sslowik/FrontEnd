@@ -65,9 +65,8 @@ const Patient = () => {
     const data = await res.json();
     setPatients(data);
   };
-  useEffect(() => {
-    fetchPatients();
-  }, []); // For control that's something change [name]
+
+  useEffect(() => {fetchPatients(); }, []);
 
   const handleSubmit = async () => {
     console.log("Posting Patients");

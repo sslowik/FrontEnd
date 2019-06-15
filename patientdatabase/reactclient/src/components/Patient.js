@@ -45,29 +45,30 @@ const Input = styled.input`
 class Patient extends Component {
   state = {
     patient: "",
-    patients: [],
     firstname: "",
     lastname: "",
     sex: "",
     pesel: "",
-    familyDoctor: ""
+    familyDoctor: "",
+    patients: [],
   };
 
   componentDidMount() {
     this.fetchPatients();
   }
 
-  renderPatients() {
-    return this.state.patients.map(patient => patient._pesel);
+  async fetchPatients() {
+    const values = await axios.get("http://localhost:4001/api/patients/all")
+    .then(response => response.data);
+    this.setState({ patients: values });
   }
 
-  async fetchPatients() {
-    const values = await axios.get("http://localhost:4000/api/patients/all");
-    this.setState({ patients: values.data });
+  renderPatients() {
+    return this.state.patients.map(patient => patient._pesel).join(' | ');
   }
 
   handleSubmit = async event => {
-    await axios.post("http://localhost:4000/api/patients/", {
+    await axios.post("http://localhost:4001/api/patients/", {
       firstname: this.state.patientFirstname,
       lastname: this.state.patientLastname,
       sex: this.state.patientSex,
@@ -86,15 +87,7 @@ class Patient extends Component {
     const { patients, patientFirstname, patientLastname, patientSex, patientPesel, patientFamilyDoctor } = this.state;
     return (
       <Main>
-        <h1>Patient</h1>
-        <div>
-          {patients.map(patient => (
-            <p className="patient" key={patient._pesel}>
-              Firstname: {patient._firstname} Lastname: {patient._lastname} Sex: {patient._sex}
-              Family Doctor: {patient._familyDoctor}
-            </p>
-          ))}
-        </div>
+        <h1>Add Patient</h1>
         <form onSubmit={this.handleSubmit} className="row">
           <div className="row-inside">
             <label>Enter Patient Firstname:</label>
@@ -139,6 +132,25 @@ class Patient extends Component {
           </div>
           <div className="row-inside">
             <Button>SUBMIT!</Button>
+          </div>
+          <div><h2>Current Patients ID: {this.renderPatients()}</h2></div>
+            <div>
+          {patients.map(patient => (
+            <p className="patient" key={patient._pesel}> 
+              {patient._pesel} -> {patient._firstname} {patient._lastname} | Sex: {patient._sex} | Family Doctor: {patient._familyDoctor}
+            </p>
+          ))}
+        </div>
+        <div className="row-inside">
+            <label>Enter PESEL to delete:</label>
+            <Input
+              id="patientPesel"
+              value={patientPesel}
+              onChange={this.handleChange}
+            />
+          </div>
+        <div className="row-inside">
+            <Button>DELETE!</Button>
           </div>
         </form>
       </Main>

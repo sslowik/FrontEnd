@@ -29,7 +29,7 @@ app.delete('/api/patients/:pesel', (req, res) => {
 });
 
 app.post('/api/patients', (req, res) => {
-    const firstnamename = req.body.firstname;
+    const firstname = req.body.firstname;
     const lastname = req.body.lastname;
     const sex = req.body.sex;
     const pesel = req.body.pesel;

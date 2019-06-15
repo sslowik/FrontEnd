@@ -6,7 +6,7 @@ class PatientDatabase {
 
         this.addPatient(new Patient('Adam', 'Słodowy', 'M', 88112302211, 'Jakub Sienkiewicz'));
         this.addPatient(new Patient('Magdalena', 'Kwasowa', 'F', 99061507888, 'Jakub Sienkiewicz'));
-        this.addPatient(new Patient('Tony', 'Halik', 74010109777 , 'Doktor Zosia'));
+        this.addPatient(new Patient('Tony', 'Halik', 'M', 74010109777 , 'Doktor Zosia'));
     }
 
     findPatientByPesel(pesel) {
@@ -24,7 +24,7 @@ class PatientDatabase {
     }
 
     deletPatient(pesel) {
-        this._patients = this._patients.filter(patient => patient.pesel !== pesel);
+        this._patients = this._patients.filter(patient => patient.pesel != pesel);
     }
 
     displayPatient(pesel) {
@@ -40,7 +40,7 @@ class PatientDatabase {
     }
 
     patientToString(patient) {
-        return `Patient: ${patient._firstname} ${patient._lastname}, PESEL: ${patient._pesel}, sex: ${patient._sex}, of FamilyDoctor: ${patient._familyDoctor}zł.`;
+        return `Patient: ${patient._firstname} ${patient._lastname}, sex: ${patient._sex}, PESEL: ${patient._pesel}, of FamilyDoctor: ${patient._familyDoctor}.`;
     }
 }
 

@@ -13,3 +13,5 @@ render () {
     )
 }
 }
+
+export default Dollar;

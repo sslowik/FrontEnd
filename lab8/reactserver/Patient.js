@@ -27,10 +27,9 @@ class Patient {
         return this._familyDoctor
     }
 
-    patientToString() {
-        return `Patient: ${this._firstname} ${this._lastname}, PESEL: ${this._pesel}, sex: ${this._sex}, of FamilyDoctor: ${this._familyDoctor}zł.`;
+    toString() {
+        return `Patient: ${this._firstname} ${this._lastname}, sex: ${this._sex}, PESEL: ${this._pesel}, of FamilyDoctor: ${this._familyDoctor}.`;
     }
-
 }
 
 module.exports = Patient;

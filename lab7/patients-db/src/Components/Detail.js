@@ -6,7 +6,7 @@ class Details extends Component {
         super(props);
         this.state = {
             firstName: 1,
-			lastName: 1,
+            lastName: 1,
             pesel: 1,
             sex: 1,
             familyDoctor: 1,

@@ -6,10 +6,10 @@ const Main = styled.div`
   margin: 0 auto;
 `;
 
-const Page404 = () => {
+const ToDo = () => {
     return (
         <Main>
-            <h1>PAGE 404</h1>
+            <h1>PAGE 404 - component not found. </h1>
             <h1>ToDo list: 
                 - Delete
                 - Update
@@ -19,4 +19,4 @@ const Page404 = () => {
     )
 }
 
-export default Page404;
+export default ToDo;

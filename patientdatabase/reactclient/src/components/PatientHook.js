@@ -61,7 +61,7 @@ const Patient = () => {
 
   const fetchPatients = async () => {
     // console.log("Fetching Patients");
-    const res = await fetch("http://localhost:4000/api/patients/all");
+    const res = await fetch("http://localhost:4001/api/patients/all");
     const data = await res.json();
     setPatients(data);
   };
@@ -71,7 +71,7 @@ const Patient = () => {
 
   const handleSubmit = async () => {
     console.log("Posting Patients");
-    await axios.post("http://localhost:4000/api/patients", {
+    await axios.post("http://localhost:4001/api/patients", {
       firstname: patientFirstname,
       lastname: patientLastname,
       sex: patientSex,

@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import ReactDOM from 'react-dom';
 
 class Patient extends Component {
@@ -17,7 +17,7 @@ class Patient extends Component {
                 <h1>Dane Pacjenta: </h1>
                 <ul>
                     <li>Imię: { this.firstName }</li>
-					<li>Nazwisko: { this.lastName }</li>
+                    <li>Nazwisko: { this.lastName }</li>
                     <li>PESEL: { this.pesel }</li>
                     <li>Płeć: { this.sex }</li>
                     <li>Lekarz rodzinny: { this.familyDoctor }</li>

@@ -7,12 +7,13 @@ const Header = ({ className }) => {
   return (
     <header className={className}>
       <img src={logo} className="App-logo" alt="logo" />
+      <div><h4>Patients Database</h4></div>
       <div>
         <Link className="item" to="/">
-          Welcome to our great Patients Database :>
+          Add/Delete Patient
         </Link>
-        <Link className="item" to="/hook">
-          Hooks to Patients Database
+        <Link className="item" to="/patients">
+          Patients
         </Link>
         <Link className="item" to="/credits">
           Credits
@@ -27,7 +28,7 @@ export default styled(Header)`
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
-  background: hsl(350, 100%, 88%, 0.9);;
+  background: hsl(215, 100%, 88%, 0.9);;
   padding: 10px 5%;
   width: 100%;
   color: #fff;
